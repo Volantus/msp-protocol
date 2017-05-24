@@ -38,10 +38,12 @@ class CommunicationService
      * CommunicationService constructor.
      *
      * @param SerialInterface|null $serialInterface
+     * @param ResponseFactory|null $responseFactory
      */
-    public function __construct(SerialInterface $serialInterface = null)
+    public function __construct(SerialInterface $serialInterface = null, ResponseFactory $responseFactory = null)
     {
         $this->serialInterface = $serialInterface ?: new SerialInterface();
+        $this->responseFactory = $responseFactory ?: new ResponseFactory();
         $this->expectedPreamble = Response::getPreamble();
     }
 
@@ -57,11 +59,11 @@ class CommunicationService
     }
 
     /**
-     * @param int $timeout
+     * @param float $timeout
      *
      * @return Response
      */
-    private function receiveResponse(int $timeout): Response
+    private function receiveResponse(float $timeout): Response
     {
         $start = microtime(true);
         $data = '';
@@ -77,8 +79,8 @@ class CommunicationService
                 if ($dataLength == 3 && $data !== $this->expectedPreamble) {
                     throw new \RuntimeException('Invalid preamble ' . $data . ' received. Expected: ' . $this->expectedPreamble);
                 } elseif ($dataLength == 4) {
-                    $size = unpack('C', $nextByte);
-                } elseif ($dataLength >= ($size + 6)) {
+                    $size = unpack('C', $nextByte)[1];
+                } elseif ($size != null && $dataLength >= ($size + 6)) {
                     return $this->responseFactory->create($data);
                 }
             } else {
