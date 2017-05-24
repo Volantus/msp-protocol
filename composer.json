@@ -1,0 +1,23 @@
+{
+  "name": "volantus/msp-protocol",
+  "description": "PHP implementation of the SMP protocol + serial communication adapter",
+  "type": "project",
+  "license": "GNUv3",
+  "authors": [
+    {
+      "name": "Marius Meißner",
+      "email": "info@marius-meissner.net"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Volantus\\MSPProtocol\\": "",
+      "Volantus\\MSPProtocol\\Src\\": "src",
+      "Volantus\\MSPProtocol\\Tests\\": "tests"
+    }
+  }
+}
