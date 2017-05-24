@@ -21,8 +21,8 @@ Complete device communication is handled by CommunicationService, which gets a S
 ```
 
 ## Requests/Response
-> The current request/response implementation set is not complete yet
-> Especially custom packages from Clean-/Betaflight are missing yet
+> The current request/response implementation set is not complete yet.
+> Especially custom packages from Clean-/Betaflight are missing.
 > Contributors are highly welcome.
 
 All request and responses are encapsulated into objects, which includes interpretation logic about their respective payload structure.
