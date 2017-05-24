@@ -14,7 +14,7 @@ abstract class Request extends Package
     /**
      * Timeout in seconds waiting for response (including socket reading)
      *
-     * @var int
+     * @var float
      */
     protected $timeout = 0.1;
 
@@ -48,17 +48,17 @@ abstract class Request extends Package
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getTimeout(): int
+    public function getTimeout(): float
     {
         return $this->timeout;
     }
 
     /**
-     * @param int $timeout Timeout in microseconds
+     * @param float $timeout Timeout in seconds
      */
-    public function setTimeout(int $timeout)
+    public function setTimeout(float $timeout)
     {
         $this->timeout = $timeout;
     }

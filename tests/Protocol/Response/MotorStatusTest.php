@@ -1,5 +1,5 @@
 <?php
-namespace Volantus\MSPProtocol\Tests\MSP\Response;
+namespace Volantus\MSPProtocol\Tests\Protocol\Response;
 
 use Volantus\MSPProtocol\Src\Protocol\Response\MotorStatus;
 
