@@ -1,6 +1,7 @@
 <?php
 namespace Volantus\MSPProtocol\Src\Protocol;
 
+use Volantus\MSPProtocol\Src\Protocol\Response\Attitude;
 use Volantus\MSPProtocol\Src\Protocol\Response\MotorStatus;
 use Volantus\MSPProtocol\Src\Protocol\Response\Response;
 
@@ -37,6 +38,8 @@ class ResponseFactory
         switch ($type) {
             case MotorStatus::TYPE:
                 return new MotorStatus($payload);
+            case Attitude::TYPE:
+                return new Attitude($payload);
             default:
                 throw new InvalidCommandTypeException($type);
         }
