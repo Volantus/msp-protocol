@@ -2,6 +2,7 @@
 namespace Volantus\MSPProtocol\Tests\MSP\Response;
 
 use Volantus\MSPProtocol\Src\Protocol\CrcCalculator;
+use Volantus\MSPProtocol\Src\Protocol\Response\Attitude;
 use Volantus\MSPProtocol\Src\Protocol\Response\MotorStatus;
 use Volantus\MSPProtocol\Src\Protocol\Response\Response;
 use Volantus\MSPProtocol\Src\Protocol\ResponseFactory;
@@ -58,6 +59,18 @@ class ResponseFactoryTest extends \PHPUnit_Framework_TestCase
         self::assertCount(16, $response->getStatuses());
         self::assertEquals(1000, $response->getStatuses()[0]);
         self::assertEquals(1750, $response->getStatuses()[15]);
+    }
+
+    public function test_create_attitudeCorrect()
+    {
+        $payload = pack('s*', -1500, 500, 100);
+        $crc = CrcCalculator::calculate(pack('C', Attitude::TYPE), pack('C', 6), $payload);
+        $data = Response::getPreamble().pack('C*', 6, Attitude::TYPE) . $payload . $crc;
+        /** @var Attitude $response */
+        $response = $this->factory->create($data);
+
+        self::assertInstanceOf(Attitude::class, $response);
+        self::assertEquals(100, $response->getHeading());
     }
 
 
