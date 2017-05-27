@@ -1,7 +1,7 @@
 {
   "name": "volantus/msp-protocol",
   "description": "PHP implementation of the SMP protocol + serial communication adapter",
-  "type": "project",
+  "type": "library",
   "license": "GNUv3",
   "authors": [
     {
