@@ -42,7 +42,7 @@ abstract class Request extends Package
         $payload = $this->calculatePayload();
         $size = pack('C', $this->size);
         $type = pack('C', $this->type);
-        $crc = CrcCalculator::calculate($this->type, $this->size, $payload);
+        $crc = CrcCalculator::calculate($type, $size, $payload);
 
         return iconv("UTF-8", "CP437", '$M' . $this->direction) . $size . $type . $payload . $crc;
     }

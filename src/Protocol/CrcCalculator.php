@@ -23,8 +23,10 @@ final class CrcCalculator
     {
         $crc = $type ^ $size;
 
-        foreach (str_split($payload) as $payloadByte) {
-            $crc = $crc ^ $payloadByte;
+        if (!empty($payload)) {
+            foreach (str_split($payload) as $payloadByte) {
+                $crc = $crc ^ $payloadByte;
+            }
         }
 
         return $crc;
